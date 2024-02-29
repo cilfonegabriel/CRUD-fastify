@@ -1,5 +1,5 @@
-const { getProductsSchema, getProductSchema, addProductSchema } = require('../controllers/schemas/products.js');
-const { getProductsHandler, getProductHandler, addProductHandler } = require('../controllers/handlers/products.js');
+const { getProductsSchema, getProductSchema, addProductSchema, updateProductSchema } = require('../controllers/schemas/products.js');
+const { getProductsHandler, getProductHandler, addProductHandler, updateProductHandler } = require('../controllers/handlers/products.js');
 
 const getProductsOpts = {
     schema: getProductsSchema,
@@ -16,6 +16,10 @@ const addProductOpts = {
     handler: addProductHandler,
 };
 
+const updateProductOpts = {
+    schema: updateProductSchema,
+    handler: updateProductHandler, 
+};
 
 const productsRoutes = async (fastify, options) => {
     fastify.get('/api/products', getProductsOpts);
