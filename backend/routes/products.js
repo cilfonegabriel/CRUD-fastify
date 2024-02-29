@@ -21,11 +21,17 @@ const updateProductOpts = {
     handler: updateProductHandler, 
 };
 
+const deleteProductOpts = {
+    schema: deleteProductSchema,
+    handler: deleteProductHandler,
+  };
+
 const productsRoutes = async (fastify, options) => {
     fastify.get('/api/products', getProductsOpts);
     fastify.get('/api/products/:id', getProductOpts);
     fastify.post('/api/products/new', addProductOpts);
     fastify.put('/api/products/edit/:id', updateProductOpts);
+    fastify.delete('/api/products/:id', deleteProductOpts);
 };
 
 module.exports = productsRoutes;
