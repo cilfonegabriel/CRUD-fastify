@@ -1,5 +1,5 @@
-const { getProductsSchema, getProductSchema, addProductSchema, updateProductSchema } = require('../controllers/schemas/products.js');
-const { getProductsHandler, getProductHandler, addProductHandler, updateProductHandler } = require('../controllers/handlers/products.js');
+const { getProductsSchema, getProductSchema, addProductSchema, updateProductSchema, deleteProductSchema } = require('../controllers/schemas/products.js');
+const { getProductsHandler, getProductHandler, addProductHandler, updateProductHandler, deleteProductHandler } = require('../controllers/handlers/products.js');
 
 const getProductsOpts = {
     schema: getProductsSchema,
