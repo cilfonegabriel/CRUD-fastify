@@ -46,5 +46,21 @@ const getProductsHandler = (req, reply) => {
   
     return reply.send('Product updated');
   };
+
+  const deleteProductHandler = (req, reply) => {
+    const { id } = req.params;
   
-  module.exports = { getProductsHandler, getProductHandler, addProductHandler, updateProductHandler };
+    const productIndex = products.findIndex((product) => {
+      return product.id === id;
+    });
+  
+    if (productIndex === -1) {
+      return reply.status(404).send(new Error("product doesn't exist"));
+    }
+  
+    products.splice(productIndex, 1);
+  
+    return reply.send('Product deleted');
+  };
+  
+  module.exports = { getProductsHandler, getProductHandler, addProductHandler, updateProductHandler, deleteProductHandler };
