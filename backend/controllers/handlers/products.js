@@ -21,10 +21,30 @@ const getProductsHandler = (req, reply) => {
   const addProductHandler = (req, reply) => {
     const { name, description, price, availability } = req.body;
   
-    const id = products.length + 1; // posts is imported from db/product.js
+    const id = products.length + 1; // Products is imported from db/product.js
     products.push({ id, name, description, price, availability });
   
     reply.send('Product added');
   };
+
+  const updateProductHandler = (req, reply) => {
+    const { name, description, price, availability } = req.body;
+    const { id } = req.params;
   
-  module.exports = { getProductsHandler, getProductHandler, addProductHandler };
+    const product = products.filter((product) => {
+      return product.id === id;
+    })[0];
+  
+    if (!product) {
+      return reply.status(404).send(new Error("product doesn't exist"));
+    }
+  
+    product.name = name;
+    product.description = description;
+    product.price = price;
+    product.availability = availability;
+  
+    return reply.send('Product updated');
+  };
+  
+  module.exports = { getProductsHandler, getProductHandler, addProductHandler, updateProductHandler };
