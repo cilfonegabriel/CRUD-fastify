@@ -1,5 +1,5 @@
-const { getAdminsHandler, registerAdminHandler  } =  require('../controllers/handlers/admins.js');
-const { getAdminsSchema, registerAdminSchema  } = require('../controllers/schemas/admins.js');
+const { getAdminsHandler, registerAdminHandler, loginAdminHandler  } =  require('../controllers/handlers/admins.js');
+const { getAdminsSchema, registerAdminSchema, loginAdminSchema  } = require('../controllers/schemas/admins.js');
 
 const getAdminsOpts = {
     schema: getAdminsSchema,
@@ -11,10 +11,16 @@ const addAdminOpts = {
     handler: registerAdminHandler ,
 };
 
+const loginAdminOpts = {
+    schema: loginAdminSchema,
+    handler: loginAdminHandler,
+  };
+
 
 const adminRoutes = (fastify, options, done) => {
     fastify.get('/api/admins', getAdminsOpts);
-    fastify.post('/api/login', addAdminOpts);
+    fastify.post('/api/admins/new', addAdminOpts);
+    fastify.post('/api/admins/login', loginAdminOpts);
 
       done();
 };

@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const admins = require('../../db/admins');
 
 const getAdminsHandler = (req, reply) => {
@@ -16,6 +18,35 @@ const registerAdminHandler = (req, reply) => {
     });
   
     reply.send('Account created successfully');
-  };
+};
 
-module.exports = { getAdminsHandler, registerAdminHandler };
+const loginAdminHandler = (req, reply) => {
+  const { username, password } = req.body;
+
+  const admin = admins.filter((admin) => {
+    return admin.username === username;
+  })[0];
+
+  if (!admin) {
+    return reply.send("This admin doesn't exist");
+  }
+
+  // check if password is correct
+  if (password !== admin.password) {
+    return reply.send('Invalid credentials');
+  }
+
+  // sign a token
+  jwt.sign(
+    { id: admin.id },
+    'my_jwt_secret',
+    { expiresIn: 3 * 86400 },
+    (err, token) => {
+      if (err) reply.status(500).send(new Error(err));
+
+      reply.send({ token });
+    }
+  );
+};
+
+module.exports = { getAdminsHandler, registerAdminHandler, loginAdminHandler };
