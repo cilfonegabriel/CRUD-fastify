@@ -1,11 +1,13 @@
+const { getProductsSchema } = require('../controllers/schemas/products.js');
+const { getProductsHandler } = require('../controllers/handlers/products.js');
+
+const getProductsOpts = {
+    schema: getProductsSchema,
+    handler: getProductsHandler,
+};
+
 const productsRoutes = async (fastify, options) => {
-    fastify.get('/api/products', async (req, reply) => {
-        reply.send([
-            { id: 1, name: 'Product One', description: 'This is product one', price: 30.20, availability: true },
-            { id: 2, name: 'Product Two', description: 'This is product two', price: 19.50, availability: false },
-            { id: 3, name: 'Product Three', description: 'This is product three', price: 8.99, availability: true }
-          ]);
-    });
+    fastify.get('/api/products', getProductsOpts)
 };
 
 module.exports = productsRoutes;
