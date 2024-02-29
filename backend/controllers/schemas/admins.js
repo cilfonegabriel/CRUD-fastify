@@ -16,4 +16,19 @@ const getAdminsSchema = {
     },
 };
 
-module.exports = { getAdminsSchema };
+const registerAdminSchema = {
+    body: {
+        type: 'object',
+        required: ['username', 'email', 'password'],
+        properties: {
+            username: typeString,
+            email: typeString,
+            password: typeString,
+        },
+        },
+        response: {
+        200: typeString,
+    },
+};
+
+module.exports = { getAdminsSchema, registerAdminSchema };
