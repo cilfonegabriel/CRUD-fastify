@@ -17,5 +17,14 @@ const getProductsHandler = (req, reply) => {
   
     return reply.send(product);
   };
+
+  const addProductHandler = (req, reply) => {
+    const { name, description, price, availability } = req.body;
   
-  module.exports = { getProductsHandler, getProductHandler };
+    const id = products.length + 1; // posts is imported from db/product.js
+    products.push({ id, name, description, price, availability });
+  
+    reply.send('Product added');
+  };
+  
+  module.exports = { getProductsHandler, getProductHandler, addProductHandler };
