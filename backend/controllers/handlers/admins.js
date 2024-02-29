@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-
 const admins = require('../../db/admins');
 
 const getAdminsHandler = (req, reply) => {

@@ -1,6 +1,14 @@
 const typeString = { type: 'string' };
-const typeNumber = { type: 'number' }; // Definir typeNumber como un objeto con type 'number'
-const typeBoolean = { type: 'boolean' }; // Definir typeBoolean como un objeto con type 'boolean'
+const typeNumber = { type: 'number' }; 
+const typeBoolean = { type: 'boolean' }; 
+
+const headerSchema = {
+  type: 'object',
+  required: ['token'],
+  properties: {
+    token: typeString,
+  },
+};
 
 const productSchema = {
   type: 'object',
@@ -8,8 +16,8 @@ const productSchema = {
     id: { type: 'number' },
     name: typeString,
     description: typeString,
-    price: typeNumber, // Usar typeNumber en lugar de { type: 'number' }
-    availability: typeBoolean // Usar typeBoolean en lugar de { type: 'boolean' }
+    price: typeNumber, 
+    availability: typeBoolean 
   },
 };
 
@@ -32,6 +40,7 @@ const getProductSchema = {
 };
 
 const addProductSchema = {
+  headers: headerSchema,
   body: {
     type: 'object',
     required: ['name', 'description', 'price', 'availability'],
@@ -53,6 +62,7 @@ const addProductSchema = {
 };
 
 const updateProductSchema = {
+  headers: headerSchema,
     body: {
       type: 'object',
       required: ['name', 'description', 'price', 'availability'],
@@ -72,8 +82,9 @@ const updateProductSchema = {
   };
 
   const deleteProductSchema = {
+    headers: headerSchema,
     params: {
-      id: { type: 'number' },
+        id: { type: 'number' },
     },
     response: {
       200: typeString,
