@@ -52,4 +52,23 @@ const addProductSchema = {
   },
 };
 
-module.exports = { getProductsSchema, getProductSchema, addProductSchema };
+const updateProductSchema = {
+    body: {
+      type: 'object',
+      required: ['name', 'description', 'price', 'availability'],
+      properties: {
+        name: typeString,
+        description: typeString,
+        price: typeNumber,
+        availability: typeBoolean
+      },
+    },
+    params: {
+      id: { type: 'number' },
+    },
+    response: {
+      200: typeString, 
+    },
+  };
+
+module.exports = { getProductsSchema, getProductSchema, addProductSchema, updateProductSchema };
