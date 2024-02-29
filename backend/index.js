@@ -2,6 +2,7 @@ const fastify = require('fastify')({ logger: true });
 const PORT = process.env.PORT || 4000;
 
 const startServer = async () => {
+
     try {
         await fastify.register(require('./routes/products'));
         fastify.register(require('./routes/admins'));
