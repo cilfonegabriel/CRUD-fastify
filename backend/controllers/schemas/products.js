@@ -71,4 +71,13 @@ const updateProductSchema = {
     },
   };
 
-module.exports = { getProductsSchema, getProductSchema, addProductSchema, updateProductSchema };
+  const deleteProductSchema = {
+    params: {
+      id: { type: 'number' },
+    },
+    response: {
+      200: typeString,
+    },
+  };
+
+module.exports = { getProductsSchema, getProductSchema, addProductSchema, updateProductSchema, deleteProductSchema };
