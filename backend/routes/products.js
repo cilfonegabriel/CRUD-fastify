@@ -6,9 +6,14 @@ const getProductsOpts = {
     handler: getProductsHandler,
 };
 
+const getProductOpts = {
+    schema: getProductSchema,
+    handler: getProductHandler,
+};
+
 const productsRoutes = async (fastify, options) => {
     fastify.get('/api/products', getProductsOpts);
-    fastify.get('/api/products/:id', getProductsOpts);
+    fastify.get('/api/products/:id', getProductOpts);
 };
 
 module.exports = productsRoutes;
