@@ -1,5 +1,5 @@
-const { getProductsSchema } = require('../controllers/schemas/products.js');
-const { getProductsHandler } = require('../controllers/handlers/products.js');
+const { getProductsSchema, getProductSchema } = require('../controllers/schemas/products.js');
+const { getProductsHandler, getProductHandler } = require('../controllers/handlers/products.js');
 
 const getProductsOpts = {
     schema: getProductsSchema,
