@@ -14,6 +14,7 @@ const getProductOpts = {
 const productsRoutes = async (fastify, options) => {
     fastify.get('/api/products', getProductsOpts);
     fastify.get('/api/products/:id', getProductOpts);
+    fastify.post('/api/products/new', addProductOpts);
 };
 
 module.exports = productsRoutes;
