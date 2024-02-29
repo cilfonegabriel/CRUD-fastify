@@ -1,17 +1,15 @@
 const fastify = require('fastify')({ logger: true });
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4000;
 
-fastify.get('/', (req, reply) => {
-    reply.send('Hello World!');
-  });
-
-  const startServer = async () => {
+const startServer = async () => {
     try {
-      await fastify.listen(PORT);
+        await fastify.register(require('./routes/products'));
+        await fastify.listen(PORT);
+        console.log(`Servidor corriendo en el puerto ${PORT}`);
     } catch (err) {
-      fastify.log.error(err);
-      process.exit(1);
+        fastify.log.error(err);
+        process.exit(1);
     }
-  };
+};
 
-  startServer();
+startServer();
